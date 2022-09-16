@@ -1,0 +1,25 @@
+https://github.com/Azure/terraform-azurerm-caf-enterprise-scale/wiki/%5BExamples%5D-Deploy-Custom-Landing-Zone-Archetypes
+
+
+vscode@8568552bc765:/tf/caf$ rover   --impersonate-sp-from-keyvault-url https://vcf-kv-es-kkh.vault.azure.net/   -lz /tf/caf/landingzones/caf_solution/add-ons/caf_eslz   -var-folder /tf/caf/configuration/level1/alz/es   -tfstate_subscription_id a9c7991e-521c-4532-93a9-5a37f82ccaed   -tfstate alz_es.tfstate   -env vcf-obs   -level level1   -p ${TF_DATA_DIR}/alz_es.tfstate.tfplan   -a plan
+
+
+#piste:
+#iac_aztfmod-roverv1/landingzones/caf_solution/add-ons/caf_eslz/archetype_config_overrides
+
+
+│ Error: Duplicate object key
+│
+│   on /home/vscode/.terraform.cache/vcf-obs/modules/enterprise_scale/modules/archetypes/locals.policy_assignments.tf line 52, in locals:
+│   50:   custom_policy_assignments_map_from_json = try(length(local.custom_policy_assignments_dataset_from_json) > 0, false) ? {
+│   51:     for key, value in local.custom_policy_assignments_dataset_from_json :
+│   52:     value.name => value
+│   53:     if value.type == local.resource_types.policy_assignment
+│   54:   } : null
+│     ├────────────────
+│     │ value.name is "aks-capability"
+│
+│ Two different items produced the key "aks-capability" in this 'for' expression. If duplicates are expected, use the
+│ ellipsis (...) after the value expression to enable grouping by key.
+╵
+

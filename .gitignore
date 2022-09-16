@@ -24,3 +24,4 @@ public
 **/*.cer
 **/*.output
 *output.json
+**/.ipynb_checkpoints
